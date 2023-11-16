@@ -2,4 +2,9 @@
 plugins {
     id("com.android.application") version "8.1.1" apply false
     id("org.jetbrains.kotlin.android") version "1.9.0" apply false
+    id ("com.google.dagger.hilt.android") version "2.48" apply false
+    // STEP 1: Apply the Kotlin JVM (or Kotlin Android plugin)
+    id("org.jetbrains.kotlin.jvm") version "1.9.0" apply false
+    // STEP 2: Apply the KSP plugin
+    id("com.google.devtools.ksp") version "1.9.0-1.0.12" apply false
 }
