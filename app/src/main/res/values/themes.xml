@@ -2,8 +2,16 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.GweilandAndroidTask" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/white</item>
     </style>
 
     <style name="Theme.GweilandAndroidTask" parent="Base.Theme.GweilandAndroidTask" />
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@android:color/transparent</item>
+    </style>
+
+    <style name="App.Custom.SearchView" parent="TextAppearance.Material3.SearchView">
+        <item name="android:textSize">13sp</item>
+    </style>
 </resources>

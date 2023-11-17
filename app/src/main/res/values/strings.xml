@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Gweiland Android Task</string>
+    <string name="title_exchange">EXCHANGES</string>
+    <string name="hint_search_cryptocurrency">Search Cryptocurrency</string>
+    <string name="str_top_cyrptocurrencies">Top Cyrptocurrencies</string>
+    <string name="str_view_all">View All</string>
 </resources>
