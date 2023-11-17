@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".presentation_layer.crypto_currency.CryptoCurrencyActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -142,15 +142,99 @@
             app:layout_constraintLeft_toRightOf="@id/title_cryptoCurrency"
             app:layout_constraintTop_toTopOf="@+id/title_cryptoCurrency" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/carousalCardView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/fl_bottom_nav"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/light_green"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/title_cryptoCurrency" />
+            app:layout_constraintTop_toBottomOf="@+id/title_cryptoCurrency">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="131dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgBitcoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imgMask"
+                    app:layout_constraintEnd_toStartOf="@+id/imgBitcoinValue"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_bitcoin" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgBitcoinValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imgMask"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/imgBitcoin"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_bitcoin_value" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgMask"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:srcCompat="@drawable/icon_maskable" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/titleCrypto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical|start"
+            android:padding="10dp"
+            android:text="@string/str_top_cyrptocurrencies"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/txtViewAll"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/carousalCardView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtViewAll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:padding="10dp"
+            android:text="@string/str_view_all"
+            android:textColor="@color/off_white3"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/titleCrypto"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/titleCrypto" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCryptoCurrency"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@id/fl_bottom_nav"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/titleCrypto" />
+
 
         <FrameLayout
             android:id="@+id/fl_bottom_nav"
@@ -199,6 +283,21 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/circularProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorColor="@color/white"
+            app:indicatorSize="60dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackColor="@color/bottom_nav_bg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

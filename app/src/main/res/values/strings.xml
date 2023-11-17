@@ -4,4 +4,6 @@
     <string name="hint_search_cryptocurrency">Search Cryptocurrency</string>
     <string name="str_top_cyrptocurrencies">Top Cyrptocurrencies</string>
     <string name="str_view_all">View All</string>
+    <string name="load_crypto_logo">https://s2.coinmarketcap.com/static/img/coins/64x64/%1$s.png</string>
+    <string name="str_comming_soon">Comming Soon...</string>
 </resources>

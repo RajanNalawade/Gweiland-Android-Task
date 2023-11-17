@@ -104,8 +104,4 @@ dependencies {
     var navVersion = "2.6.0"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
-
-    //View Pager2
-    var viewPager2Version = "1.0.0"
-    implementation("androidx.viewpager2:viewpager2:$viewPager2Version")
 }
