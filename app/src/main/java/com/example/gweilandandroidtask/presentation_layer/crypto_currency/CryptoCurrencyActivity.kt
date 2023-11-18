@@ -7,12 +7,18 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gweilandandroidtask.R
 import com.example.gweilandandroidtask.databinding.ActivityMainBinding
+import com.example.gweilandandroidtask.databinding.FilterBottomSheetBinding
 import com.example.gweilandandroidtask.presentation_layer.adapters.CryptoCurrencyAdapter
 import com.example.gweilandandroidtask.utils.NetworkResult
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import showToast
 
 
@@ -67,6 +73,30 @@ class CryptoCurrencyActivity : AppCompatActivity() {
             }
 
         })
+
+        binding?.btnFilter?.setOnClickListener {
+
+            val filterSheet = layoutInflater.inflate(R.layout.filter_bottom_sheet, null)
+            val filterBinding = FilterBottomSheetBinding.bind(filterSheet)
+            val dialog = BottomSheetDialog(this@CryptoCurrencyActivity)
+            dialog.setContentView(filterBinding.root)
+
+            filterBinding.btnPrice.setOnClickListener {
+                viewModel.filterData?.value = "price"
+                dialog.dismiss()
+            }
+
+            filterBinding.btnMarketCap.setOnClickListener {
+                viewModel.filterData?.value = "market_cap"
+                dialog.dismiss()
+            }
+
+            filterBinding.btnVolume24h.setOnClickListener {
+                viewModel.filterData?.value = "volume_24h"
+                dialog.dismiss()
+            }
+            dialog.show()
+        }
     }
 
     private fun observeCryptoData() {
@@ -91,10 +121,15 @@ class CryptoCurrencyActivity : AppCompatActivity() {
                     binding?.circularProgress?.visibility = View.VISIBLE
                 }
             }
+        })
 
-
+        viewModel.filterData?.observe(this@CryptoCurrencyActivity, Observer {
+            lifecycleScope.launch(Dispatchers.IO) {
+                viewModel.getLatestCryptoList(it)
+            }
         })
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

@@ -1,6 +1,7 @@
 package com.example.gweilandandroidtask.presentation_layer.crypto_currency
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gweilandandroidtask.data_layer.remote_data_source.models.Data
@@ -17,13 +18,9 @@ class CryptoCurrencyViewModel @Inject constructor(private val useCase: GetLatest
 
     internal val cryptoResult: LiveData<NetworkResult<List<Data>>> get() = useCase.mLatestCryptoListing
 
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            getLatestCryptoList("market_cap")
-        }
-    }
+    var filterData: MutableLiveData<String>? = MutableLiveData("market_cap")
 
-    private suspend fun getLatestCryptoList(sorted: String?) {
+    suspend fun getLatestCryptoList(sorted: String?) {
         useCase(sortBy = sorted)
     }
 

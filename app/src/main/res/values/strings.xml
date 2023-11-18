@@ -6,4 +6,9 @@
     <string name="str_view_all">View All</string>
     <string name="load_crypto_logo">https://s2.coinmarketcap.com/static/img/coins/64x64/%1$s.png</string>
     <string name="str_comming_soon">Comming Soon...</string>
+    <string name="str_filter_by">Filter By</string>
+    <string name="str_price">Price</string>
+    <string name="str_market_cap">Market Cap</string>
+    <string name="str_volume_24_h">Volume 24_H</string>
+    <string name="str_cmc_rank">CMC Rank</string>
 </resources>
