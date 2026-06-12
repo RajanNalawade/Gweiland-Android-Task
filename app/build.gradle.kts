@@ -59,7 +59,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -75,7 +75,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:$recyclerViewVersion")
 
     //fragment
-    val fragmentVersion = "1.6.1"
+    val fragmentVersion = "1.6.2"
     implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
 
     //Coroutines
@@ -85,7 +85,7 @@ dependencies {
     implementation("androidx.concurrent:concurrent-futures-ktx:1.1.0")
 
     // Hilt dependencies
-    val hiltVersion = "2.48"
+    val hiltVersion = "2.48.1"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
@@ -93,7 +93,7 @@ dependencies {
     val retrofitVersion = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
     // Glide
     val glideVersion = "4.16.0"
@@ -101,7 +101,10 @@ dependencies {
     ksp("com.github.bumptech.glide:compiler:$glideVersion")
 
     //navigation graph
-    var navVersion = "2.6.0"
+    val navVersion = "2.7.5"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+
+    //leak canary
+    debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.7")
 }

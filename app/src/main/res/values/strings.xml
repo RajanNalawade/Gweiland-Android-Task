@@ -5,10 +5,22 @@
     <string name="str_top_cyrptocurrencies">Top Cyrptocurrencies</string>
     <string name="str_view_all">View All</string>
     <string name="load_crypto_logo">https://s2.coinmarketcap.com/static/img/coins/64x64/%1$s.png</string>
-    <string name="str_comming_soon">Comming Soon...</string>
     <string name="str_filter_by">Filter By</string>
     <string name="str_price">Price</string>
     <string name="str_market_cap">Market Cap</string>
     <string name="str_volume_24_h">Volume 24_H</string>
-    <string name="str_cmc_rank">CMC Rank</string>
+    <string name="str_filter">Filter</string>
+    <string name="str_cryptocurrency">Cryptocurrency</string>
+    <string name="str_nft">NFT</string>
+    <string name="str_shop">Shop</string>
+    <string name="str_exchange">Exchange</string>
+    <string name="str_launchpads">Launchpads</string>
+    <string name="str_wallet">Wallet</string>
+    <string name="str_eth">ETH</string>
+    <string name="str_etherium">Etherium</string>
+    <string name="str_453534_87_usd">$453534.87 USD</string>
+    <string name="str_1_8">+1.8%</string>
+    <string name="str_usd">%1$s%2$s USD</string>
+    <string name="str_volume24h">%1$s%</string>
+    <string name="str_memory_leaks_are_not_good_to_applications">Memory leaks are not good to applications</string>
 </resources>

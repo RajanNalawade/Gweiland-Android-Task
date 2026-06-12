@@ -20,7 +20,7 @@ class GetLatestCryptoListingUseCase @Inject constructor(private val repository: 
 
             val result = repository.getLatestCryptoListing(sortBy = sortBy)
             if (result.isSuccessful) {
-                var top20 = result.body()?.data?.subList(0, 20)!!
+                val top20 = result.body()?.data?.subList(0, 20)!!
                 latestCryptoListing.postValue(NetworkResult.Success(top20 as? List<Data>))
             } else if (result.errorBody() != null) {
                 latestCryptoListing.postValue(NetworkResult.Error(errorMessage = result.message()))

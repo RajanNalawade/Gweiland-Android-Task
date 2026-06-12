@@ -31,7 +31,11 @@ class CryptoCurrencyAdapter(private val listCrypto: List<Data>) :
             itemCryptocurrencyBinding.apply {
                 txtShortName.text = item.symbol
                 txtLongName.text = item.name
-                txtUsdPrice.text = "\$${item.quote?.uSD?.price?.formatDollarPrice()} USD"
+                txtUsdPrice.text = itemCryptocurrencyBinding.root.context.getString(
+                    R.string.str_usd,
+                    "$",
+                    item.quote?.uSD?.price?.formatDollarPrice()
+                )
                 val volumeChange24H = item.quote?.uSD?.volumeChange24h ?: 0.0
                 when {
                     volumeChange24H >= 0.0 -> {
@@ -66,7 +70,10 @@ class CryptoCurrencyAdapter(private val listCrypto: List<Data>) :
                             .into(ivCryptoGraph)
                     }
                 }
-                txtChangeInPercentage.text = "${item.quote?.uSD?.volumeChange24h.toString()}%"
+                txtChangeInPercentage.text = root.context.getString(
+                    R.string.str_volume24h,
+                    item.quote?.uSD?.volumeChange24h.toString()
+                )
 
                 Glide.with(ivCryptoIcon).load(
                     root.context.getString(
@@ -106,18 +113,21 @@ class CryptoCurrencyAdapter(private val listCrypto: List<Data>) :
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(p0: CharSequence?): FilterResults {
-                if (p0.isNullOrEmpty()) {
-                    cryptoFilteredList = listCrypto
-                } else {
-                    val filterList = mutableListOf<Data>()
-                    listCrypto.forEach { out ->
-                        if (out.name?.lowercase()?.contains(p0.toString().lowercase()) == true
-                            || out.symbol?.lowercase()?.contains(p0.toString().lowercase()) == true
-                        ) {
-                            filterList.add(out)
-                        }
+                when {
+                    p0.isNullOrEmpty() -> {
+                        cryptoFilteredList = listCrypto
                     }
-                    cryptoFilteredList = filterList
+                    else -> {
+                        val filterList = mutableListOf<Data>()
+                        listCrypto.forEach { out ->
+                            if (out.name?.lowercase()?.contains(p0.toString().lowercase()) == true
+                                || out.symbol?.lowercase()?.contains(p0.toString().lowercase()) == true
+                            ) {
+                                filterList.add(out)
+                            }
+                        }
+                        cryptoFilteredList = filterList
+                    }
                 }
                 return FilterResults().apply {
                     values = cryptoFilteredList

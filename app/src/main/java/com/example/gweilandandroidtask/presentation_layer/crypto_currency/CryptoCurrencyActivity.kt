@@ -1,6 +1,8 @@
 package com.example.gweilandandroidtask.presentation_layer.crypto_currency
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gweilandandroidtask.R
 import com.example.gweilandandroidtask.databinding.ActivityMainBinding
 import com.example.gweilandandroidtask.databinding.FilterBottomSheetBinding
+import com.example.gweilandandroidtask.presentation_layer.MainActivity
 import com.example.gweilandandroidtask.presentation_layer.adapters.CryptoCurrencyAdapter
 import com.example.gweilandandroidtask.utils.NetworkResult
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -25,6 +28,9 @@ import showToast
 @AndroidEntryPoint
 class CryptoCurrencyActivity : AppCompatActivity() {
 
+    companion object {
+        const val TAG = "life-cycle"
+    }
 
     private var binding: ActivityMainBinding? = null
 
@@ -40,10 +46,17 @@ class CryptoCurrencyActivity : AppCompatActivity() {
 
         }
 
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart: ")
+    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+
+        Log.d(TAG, "onCreate: ")
 
         binding?.rvCryptoCurrency?.apply {
             setHasFixedSize(true)
@@ -57,6 +70,26 @@ class CryptoCurrencyActivity : AppCompatActivity() {
         observeCryptoData()
 
         onBackPressedDispatcher.addCallback(onBAckPressedCallBack)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart: ")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume: ")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause: ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop: ")
     }
 
     private fun initialiseListeners() {
@@ -97,6 +130,10 @@ class CryptoCurrencyActivity : AppCompatActivity() {
             }
             dialog.show()
         }
+
+        binding?.iconMetaverse?.setOnClickListener {
+            startActivity(Intent(this@CryptoCurrencyActivity, MainActivity::class.java))
+        }
     }
 
     private fun observeCryptoData() {
@@ -132,6 +169,7 @@ class CryptoCurrencyActivity : AppCompatActivity() {
 
 
     override fun onDestroy() {
+        Log.d(TAG, "onDestroy: ")
         super.onDestroy()
         binding = null
     }
